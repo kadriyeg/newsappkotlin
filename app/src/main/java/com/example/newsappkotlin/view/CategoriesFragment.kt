@@ -1,6 +1,7 @@
 package com.example.newsappkotlin.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,36 +15,44 @@ import com.example.newsappkotlin.databinding.FragmentCategoriesBinding
 import com.example.newsappkotlin.viewmodel.CategoriesViewModel
 
 class CategoriesFragment : Fragment() {
-    lateinit var binding: FragmentCategoriesBinding
+    private lateinit var binding: FragmentCategoriesBinding
     private lateinit var viewModel: CategoriesViewModel
     private val categoryRecyclerAdapter : CategoryAdapter by lazy { CategoryAdapter() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = FragmentCategoriesBinding.inflate(layoutInflater)
-        val view=binding.root
-        arguments?.let {
-
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_categories, container, false)
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentCategoriesBinding.inflate(inflater,container,false)
+
         viewModel = ViewModelProvider(this).get(CategoriesViewModel::class.java)
-        viewModel.refreshData()
-      //  val recyclerView : RecyclerView = view.findViewById(R.id.categoryRecycler)
-    binding.categoryRecycler.layoutManager=LinearLayoutManager(context)
-        binding.categoryRecycler.adapter = categoryRecyclerAdapter
-        observeLiveData()
+
+        viewModel.list("technology").observe(this.requireActivity()){
+
+            Log.e("bilgi",it.data[0].content.toString())
+
+        }
+
+        return binding.root
     }
-    fun observeLiveData(){
+}
+
+/*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+        binding.categoryRecycler.layoutManager=LinearLayoutManager(context)
+    binding.categoryRecycler.adapter = categoryRecyclerAdapter
+
+    viewModel.refreshData()
+    //  val recyclerView : RecyclerView = view.findViewById(R.id.categoryRecycler)
+    binding.categoryRecycler.layoutManager=LinearLayoutManager(context)
+    binding.categoryRecycler.adapter = categoryRecyclerAdapter
+    observeLiveData()
+}
+
+  fun observeLiveData(){
         viewModel.categories.observe(viewLifecycleOwner, Observer { categories ->
             categories?.let {
 
@@ -75,8 +84,7 @@ class CategoriesFragment : Fragment() {
             }
         })
         }
-    }
 
-
+*/
 
 

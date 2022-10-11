@@ -1,11 +1,9 @@
 package com.example.newsappkotlin.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappkotlin.databinding.CategoriesRecycleRowBinding
-import com.example.newsappkotlin.model.Category
 
 class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
     class CategoryViewHolder(var view: CategoriesRecycleRowBinding) : RecyclerView.ViewHolder(view.root)
@@ -27,7 +25,7 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
         categoriesList.add("automobile")
 
 
-        class MyViewHolder(val binding: CategoriesRecycleRowBinding) :
+        class CategoryViewHolder(val binding: CategoriesRecycleRowBinding) :
             RecyclerView.ViewHolder(binding.root)
 
 

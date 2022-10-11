@@ -1,22 +1,24 @@
-package com.example.newsappkotlin.model
+package com.example.newsappkotlin.data.model
 
 import com.google.gson.annotations.SerializedName
 
 data class Data (
-    @SerializedName("author")
+
     val author:String?,
-    @SerializedName("content")
+
     val content:String?,
-    @SerializedName("date")
+
     val date:String?,
+
     @SerializedName("imageUrl")
-    val imageUrl:String?,
+    val image_url:String?,
+
     @SerializedName("readMoreUrl")
-    val readMoreUrl:String?,
-    @SerializedName("time")
+    val read_url:String?,
+
     val time:String?,
-    @SerializedName("title")
+
     val title:String?,
-    @SerializedName("url")
+
     val url:String?) {
 }
